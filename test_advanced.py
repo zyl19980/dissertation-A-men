@@ -416,13 +416,11 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate text-only agent on LoComo dataset")
     parser.add_argument("--dataset", type=str, default="data/locomo10.json",
                       help="Path to the dataset file")
-
-    parser.add_argument("--model", type=str, default="ollama/llama2",
+    parser.add_argument("--model", type=str, default=None,
                       help="OpenAI model to use")
-
-    parser.add_argument("--output", type=str, default=None,
+    parser.add_argument("--output", type=str, default="A_mem_job_1_sglang.log",
                       help="Path to save evaluation results")
-    parser.add_argument("--ratio", type=float, default=1.0,
+    parser.add_argument("--ratio", type=float, default=1,
                       help="Ratio of dataset to evaluate (0.0 to 1.0)")
 
     parser.add_argument("--backend", type=str, default="ollama",

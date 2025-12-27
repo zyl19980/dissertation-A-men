@@ -1,6 +1,12 @@
-.vscode/
+__pycache__/
+cached*/
+run_sglang.pbs
+run.pbs
+A_mem_job_*.log.vscode/
 __pycache__/
 a-mem/
 logs/
 data/dialsim*
 .claude/
+.vscode/
+test-file/

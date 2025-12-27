@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/launch_server.py", line 25, in <module>
+    server_args = prepare_server_args(sys.argv[1:])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/server_args.py", line 4495, in prepare_server_args
+    return ServerArgs.from_cli_args(raw_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/server_args.py", line 4033, in from_cli_args
+    return cls(**{attr: getattr(args, attr) for attr in attrs})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 294, in __init__
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/server_args.py", line 636, in __post_init__
+    self._handle_gpu_memory_settings(gpu_mem)
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/server_args.py", line 894, in _handle_gpu_memory_settings
+    model_config = self.get_model_config()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/server_args.py", line 4054, in get_model_config
+    from sglang.srt.configs.model_config import ModelConfig
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/configs/model_config.py", line 26, in <module>
+    from sglang.srt.layers.quantization import QUANTIZATION_METHODS
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/layers/quantization/__init__.py", line 19, in <module>
+    from sglang.srt.layers.quantization.auto_round import AutoRoundConfig
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/layers/quantization/auto_round.py", line 17, in <module>
+    from sglang.srt.layers.linear import LinearBase, UnquantizedLinearMethod
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/layers/linear.py", line 34, in <module>
+    from sglang.srt.layers.quantization.unquant import UnquantizedLinearMethod
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/sglang/srt/layers/quantization/unquant.py", line 51, in <module>
+    from flashinfer.fused_moe import cutlass_fused_moe as flashinfer_cutlass_fused_moe
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/flashinfer/__init__.py", line 23, in <module>
+    from . import jit as jit
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/flashinfer/jit/__init__.py", line 22, in <module>
+    from . import cubin_loader
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/flashinfer/jit/cubin_loader.py", line 27, in <module>
+    from .core import logger
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/flashinfer/jit/core.py", line 10, in <module>
+    import tvm_ffi
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/tvm_ffi/__init__.py", line 61, in <module>
+    from . import _optional_torch_c_dlpack
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py", line 200, in <module>
+    _LIB = load_torch_c_dlpack_extension()  # keep a reference to the loaded shared library
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/site-packages/tvm_ffi/_optional_torch_c_dlpack.py", line 151, in load_torch_c_dlpack_extension
+    result = subprocess.run(args, check=False, capture_output=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/subprocess.py", line 2115, in _communicate
+    ready = selector.select(timeout)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/users/ntu/yzheng05/.conda/envs/A-mem-sglang/lib/python3.11/selectors.py", line 415, in select
+    fd_event_list = self._selector.poll(timeout)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

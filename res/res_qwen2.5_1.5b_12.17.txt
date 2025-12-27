@@ -1,0 +1,1224 @@
+2025-12-17 210929,623 - INFO - 
+Evaluation Summary
+INFOlocomo_eval
+Evaluation Summary
+2025-12-17 210929,623 - INFO - Total questions evaluated 1986
+INFOlocomo_evalTotal questions evaluated 1986
+2025-12-17 210929,623 - INFO - 
+Category Distribution
+INFOlocomo_eval
+Category Distribution
+2025-12-17 210929,623 - INFO - Category 1 282 questions (14.2%)
+INFOlocomo_evalCategory 1 282 questions (14.2%)
+2025-12-17 210929,623 - INFO - Category 2 321 questions (16.2%)
+INFOlocomo_evalCategory 2 321 questions (16.2%)
+2025-12-17 210929,623 - INFO - Category 3 96 questions (4.8%)
+INFOlocomo_evalCategory 3 96 questions (4.8%)
+2025-12-17 210929,623 - INFO - Category 4 841 questions (42.3%)
+INFOlocomo_evalCategory 4 841 questions (42.3%)
+2025-12-17 210929,623 - INFO - Category 5 446 questions (22.5%)
+INFOlocomo_evalCategory 5 446 questions (22.5%)
+2025-12-17 210929,623 - INFO - 
+Aggregate Metrics
+INFOlocomo_eval
+Aggregate Metrics
+2025-12-17 210929,623 - INFO - 
+Overall
+INFOlocomo_eval
+Overall
+2025-12-17 210929,623 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,623 - INFO -     mean 0.1133
+INFOlocomo_eval    mean 0.1133
+2025-12-17 210929,623 - INFO -     std 0.3170
+INFOlocomo_eval    std 0.3170
+2025-12-17 210929,623 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,623 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,623 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,623 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,623 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,624 - INFO -     mean 0.2571
+INFOlocomo_eval    mean 0.2571
+2025-12-17 210929,624 - INFO -     std 0.3426
+INFOlocomo_eval    std 0.3426
+2025-12-17 210929,624 - INFO -     median 0.0833
+INFOlocomo_eval    median 0.0833
+2025-12-17 210929,624 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,624 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,624 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,624 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,624 - INFO -     mean 0.2669
+INFOlocomo_eval    mean 0.2669
+2025-12-17 210929,624 - INFO -     std 0.3446
+INFOlocomo_eval    std 0.3446
+2025-12-17 210929,624 - INFO -     median 0.1111
+INFOlocomo_eval    median 0.1111
+2025-12-17 210929,624 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,624 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,624 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,624 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,624 - INFO -     mean 0.1498
+INFOlocomo_eval    mean 0.1498
+2025-12-17 210929,624 - INFO -     std 0.3127
+INFOlocomo_eval    std 0.3127
+2025-12-17 210929,624 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,624 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,624 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,624 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,624 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,624 - INFO -     mean 0.2621
+INFOlocomo_eval    mean 0.2621
+2025-12-17 210929,624 - INFO -     std 0.3436
+INFOlocomo_eval    std 0.3436
+2025-12-17 210929,625 - INFO -     median 0.1053
+INFOlocomo_eval    median 0.1053
+2025-12-17 210929,625 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,625 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,625 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,625 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,625 - INFO -     mean 0.2130
+INFOlocomo_eval    mean 0.2130
+2025-12-17 210929,625 - INFO -     std 0.3272
+INFOlocomo_eval    std 0.3272
+2025-12-17 210929,625 - INFO -     median 0.0405
+INFOlocomo_eval    median 0.0405
+2025-12-17 210929,625 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,625 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,625 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,625 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,625 - INFO -     mean 0.1599
+INFOlocomo_eval    mean 0.1599
+2025-12-17 210929,625 - INFO -     std 0.2933
+INFOlocomo_eval    std 0.2933
+2025-12-17 210929,625 - INFO -     median 0.0131
+INFOlocomo_eval    median 0.0131
+2025-12-17 210929,625 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,625 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,625 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,625 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,625 - INFO -     mean 0.1301
+INFOlocomo_eval    mean 0.1301
+2025-12-17 210929,625 - INFO -     std 0.2632
+INFOlocomo_eval    std 0.2632
+2025-12-17 210929,625 - INFO -     median 0.0092
+INFOlocomo_eval    median 0.0092
+2025-12-17 210929,625 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,625 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,626 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,626 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,626 - INFO -     mean 0.1083
+INFOlocomo_eval    mean 0.1083
+2025-12-17 210929,626 - INFO -     std 0.2351
+INFOlocomo_eval    std 0.2351
+2025-12-17 210929,626 - INFO -     median 0.0073
+INFOlocomo_eval    median 0.0073
+2025-12-17 210929,626 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,626 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,626 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,626 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,626 - INFO -     mean 0.8823
+INFOlocomo_eval    mean 0.8823
+2025-12-17 210929,626 - INFO -     std 0.0654
+INFOlocomo_eval    std 0.0654
+2025-12-17 210929,626 - INFO -     median 0.8694
+INFOlocomo_eval    median 0.8694
+2025-12-17 210929,626 - INFO -     min 0.5657
+INFOlocomo_eval    min 0.5657
+2025-12-17 210929,626 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,626 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,626 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,626 - INFO -     mean 0.8773
+INFOlocomo_eval    mean 0.8773
+2025-12-17 210929,626 - INFO -     std 0.0685
+INFOlocomo_eval    std 0.0685
+2025-12-17 210929,626 - INFO -     median 0.8624
+INFOlocomo_eval    median 0.8624
+2025-12-17 210929,626 - INFO -     min 0.6976
+INFOlocomo_eval    min 0.6976
+2025-12-17 210929,626 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,626 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,626 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,627 - INFO -     mean 0.8790
+INFOlocomo_eval    mean 0.8790
+2025-12-17 210929,627 - INFO -     std 0.0628
+INFOlocomo_eval    std 0.0628
+2025-12-17 210929,627 - INFO -     median 0.8632
+INFOlocomo_eval    median 0.8632
+2025-12-17 210929,627 - INFO -     min 0.6721
+INFOlocomo_eval    min 0.6721
+2025-12-17 210929,627 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,627 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,627 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,627 - INFO -     mean 0.2186
+INFOlocomo_eval    mean 0.2186
+2025-12-17 210929,627 - INFO -     std 0.3303
+INFOlocomo_eval    std 0.3303
+2025-12-17 210929,627 - INFO -     median 0.0418
+INFOlocomo_eval    median 0.0418
+2025-12-17 210929,627 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,627 - INFO -     max 0.9998
+INFOlocomo_eval    max 0.9998
+2025-12-17 210929,627 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,627 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,627 - INFO -     mean 0.4555
+INFOlocomo_eval    mean 0.4555
+2025-12-17 210929,627 - INFO -     std 0.3162
+INFOlocomo_eval    std 0.3162
+2025-12-17 210929,627 - INFO -     median 0.3869
+INFOlocomo_eval    median 0.3869
+2025-12-17 210929,627 - INFO -     min -0.0776
+INFOlocomo_eval    min -0.0776
+2025-12-17 210929,627 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,627 - INFO -     count 1986.0000
+INFOlocomo_eval    count 1986.0000
+2025-12-17 210929,627 - INFO - 
+Category 1
+INFOlocomo_eval
+Category 1
+2025-12-17 210929,627 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,627 - INFO -     mean 0.0213
+INFOlocomo_eval    mean 0.0213
+2025-12-17 210929,627 - INFO -     std 0.1446
+INFOlocomo_eval    std 0.1446
+2025-12-17 210929,628 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,628 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,628 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,628 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,628 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,628 - INFO -     mean 0.1151
+INFOlocomo_eval    mean 0.1151
+2025-12-17 210929,628 - INFO -     std 0.2142
+INFOlocomo_eval    std 0.2142
+2025-12-17 210929,628 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,628 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,628 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,628 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,628 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,628 - INFO -     mean 0.1250
+INFOlocomo_eval    mean 0.1250
+2025-12-17 210929,628 - INFO -     std 0.2195
+INFOlocomo_eval    std 0.2195
+2025-12-17 210929,628 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,628 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,628 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,628 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,628 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,628 - INFO -     mean 0.0299
+INFOlocomo_eval    mean 0.0299
+2025-12-17 210929,628 - INFO -     std 0.1069
+INFOlocomo_eval    std 0.1069
+2025-12-17 210929,628 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,628 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,628 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,628 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,629 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,629 - INFO -     mean 0.1161
+INFOlocomo_eval    mean 0.1161
+2025-12-17 210929,629 - INFO -     std 0.2095
+INFOlocomo_eval    std 0.2095
+2025-12-17 210929,629 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,629 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,629 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,629 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,629 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,629 - INFO -     mean 0.0802
+INFOlocomo_eval    mean 0.0802
+2025-12-17 210929,629 - INFO -     std 0.1768
+INFOlocomo_eval    std 0.1768
+2025-12-17 210929,629 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,629 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,629 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,629 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,629 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,629 - INFO -     mean 0.0397
+INFOlocomo_eval    mean 0.0397
+2025-12-17 210929,629 - INFO -     std 0.1057
+INFOlocomo_eval    std 0.1057
+2025-12-17 210929,629 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,629 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,629 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,629 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,629 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,629 - INFO -     mean 0.0255
+INFOlocomo_eval    mean 0.0255
+2025-12-17 210929,629 - INFO -     std 0.0655
+INFOlocomo_eval    std 0.0655
+2025-12-17 210929,630 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,630 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,630 - INFO -     max 0.4677
+INFOlocomo_eval    max 0.4677
+2025-12-17 210929,630 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,630 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,630 - INFO -     mean 0.0183
+INFOlocomo_eval    mean 0.0183
+2025-12-17 210929,630 - INFO -     std 0.0454
+INFOlocomo_eval    std 0.0454
+2025-12-17 210929,630 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,630 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,630 - INFO -     max 0.3162
+INFOlocomo_eval    max 0.3162
+2025-12-17 210929,630 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,630 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,630 - INFO -     mean 0.8737
+INFOlocomo_eval    mean 0.8737
+2025-12-17 210929,630 - INFO -     std 0.0590
+INFOlocomo_eval    std 0.0590
+2025-12-17 210929,630 - INFO -     median 0.8634
+INFOlocomo_eval    median 0.8634
+2025-12-17 210929,630 - INFO -     min 0.6835
+INFOlocomo_eval    min 0.6835
+2025-12-17 210929,630 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,630 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,630 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,630 - INFO -     mean 0.8536
+INFOlocomo_eval    mean 0.8536
+2025-12-17 210929,630 - INFO -     std 0.0633
+INFOlocomo_eval    std 0.0633
+2025-12-17 210929,630 - INFO -     median 0.8408
+INFOlocomo_eval    median 0.8408
+2025-12-17 210929,630 - INFO -     min 0.7378
+INFOlocomo_eval    min 0.7378
+2025-12-17 210929,630 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,630 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,631 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,631 - INFO -     mean 0.8629
+INFOlocomo_eval    mean 0.8629
+2025-12-17 210929,631 - INFO -     std 0.0571
+INFOlocomo_eval    std 0.0571
+2025-12-17 210929,631 - INFO -     median 0.8475
+INFOlocomo_eval    median 0.8475
+2025-12-17 210929,631 - INFO -     min 0.7584
+INFOlocomo_eval    min 0.7584
+2025-12-17 210929,631 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,631 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,631 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,631 - INFO -     mean 0.0632
+INFOlocomo_eval    mean 0.0632
+2025-12-17 210929,631 - INFO -     std 0.1322
+INFOlocomo_eval    std 0.1322
+2025-12-17 210929,631 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,631 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,631 - INFO -     max 0.9375
+INFOlocomo_eval    max 0.9375
+2025-12-17 210929,631 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,631 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,631 - INFO -     mean 0.3512
+INFOlocomo_eval    mean 0.3512
+2025-12-17 210929,631 - INFO -     std 0.2419
+INFOlocomo_eval    std 0.2419
+2025-12-17 210929,631 - INFO -     median 0.2807
+INFOlocomo_eval    median 0.2807
+2025-12-17 210929,631 - INFO -     min -0.0483
+INFOlocomo_eval    min -0.0483
+2025-12-17 210929,631 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,631 - INFO -     count 282.0000
+INFOlocomo_eval    count 282.0000
+2025-12-17 210929,631 - INFO - 
+Category 2
+INFOlocomo_eval
+Category 2
+2025-12-17 210929,631 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,631 - INFO -     mean 0.0156
+INFOlocomo_eval    mean 0.0156
+2025-12-17 210929,632 - INFO -     std 0.1240
+INFOlocomo_eval    std 0.1240
+2025-12-17 210929,632 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,632 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,632 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,632 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,632 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,632 - INFO -     mean 0.1987
+INFOlocomo_eval    mean 0.1987
+2025-12-17 210929,632 - INFO -     std 0.2373
+INFOlocomo_eval    std 0.2373
+2025-12-17 210929,632 - INFO -     median 0.1667
+INFOlocomo_eval    median 0.1667
+2025-12-17 210929,632 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,632 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,632 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,632 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,632 - INFO -     mean 0.2071
+INFOlocomo_eval    mean 0.2071
+2025-12-17 210929,632 - INFO -     std 0.2379
+INFOlocomo_eval    std 0.2379
+2025-12-17 210929,632 - INFO -     median 0.2000
+INFOlocomo_eval    median 0.2000
+2025-12-17 210929,632 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,632 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,632 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,632 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,632 - INFO -     mean 0.0370
+INFOlocomo_eval    mean 0.0370
+2025-12-17 210929,632 - INFO -     std 0.1415
+INFOlocomo_eval    std 0.1415
+2025-12-17 210929,632 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,632 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,632 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,633 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,633 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,633 - INFO -     mean 0.2046
+INFOlocomo_eval    mean 0.2046
+2025-12-17 210929,633 - INFO -     std 0.2324
+INFOlocomo_eval    std 0.2324
+2025-12-17 210929,633 - INFO -     median 0.2000
+INFOlocomo_eval    median 0.2000
+2025-12-17 210929,633 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,633 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,633 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,633 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,633 - INFO -     mean 0.1370
+INFOlocomo_eval    mean 0.1370
+2025-12-17 210929,633 - INFO -     std 0.2123
+INFOlocomo_eval    std 0.2123
+2025-12-17 210929,633 - INFO -     median 0.0067
+INFOlocomo_eval    median 0.0067
+2025-12-17 210929,633 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,633 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,633 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,633 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,633 - INFO -     mean 0.0833
+INFOlocomo_eval    mean 0.0833
+2025-12-17 210929,633 - INFO -     std 0.1559
+INFOlocomo_eval    std 0.1559
+2025-12-17 210929,633 - INFO -     median 0.0021
+INFOlocomo_eval    median 0.0021
+2025-12-17 210929,633 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,633 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,633 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,633 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,633 - INFO -     mean 0.0550
+INFOlocomo_eval    mean 0.0550
+2025-12-17 210929,633 - INFO -     std 0.1125
+INFOlocomo_eval    std 0.1125
+2025-12-17 210929,634 - INFO -     median 0.0015
+INFOlocomo_eval    median 0.0015
+2025-12-17 210929,634 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,634 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,634 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,634 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,634 - INFO -     mean 0.0437
+INFOlocomo_eval    mean 0.0437
+2025-12-17 210929,634 - INFO -     std 0.0897
+INFOlocomo_eval    std 0.0897
+2025-12-17 210929,634 - INFO -     median 0.0012
+INFOlocomo_eval    median 0.0012
+2025-12-17 210929,634 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,634 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,634 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,634 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,634 - INFO -     mean 0.8854
+INFOlocomo_eval    mean 0.8854
+2025-12-17 210929,634 - INFO -     std 0.0550
+INFOlocomo_eval    std 0.0550
+2025-12-17 210929,634 - INFO -     median 0.8820
+INFOlocomo_eval    median 0.8820
+2025-12-17 210929,634 - INFO -     min 0.7394
+INFOlocomo_eval    min 0.7394
+2025-12-17 210929,634 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,634 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,634 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,634 - INFO -     mean 0.8666
+INFOlocomo_eval    mean 0.8666
+2025-12-17 210929,634 - INFO -     std 0.0665
+INFOlocomo_eval    std 0.0665
+2025-12-17 210929,634 - INFO -     median 0.8672
+INFOlocomo_eval    median 0.8672
+2025-12-17 210929,634 - INFO -     min 0.7255
+INFOlocomo_eval    min 0.7255
+2025-12-17 210929,634 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,635 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,635 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,635 - INFO -     mean 0.8749
+INFOlocomo_eval    mean 0.8749
+2025-12-17 210929,635 - INFO -     std 0.0546
+INFOlocomo_eval    std 0.0546
+2025-12-17 210929,635 - INFO -     median 0.8667
+INFOlocomo_eval    median 0.8667
+2025-12-17 210929,635 - INFO -     min 0.7779
+INFOlocomo_eval    min 0.7779
+2025-12-17 210929,635 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,635 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,635 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,635 - INFO -     mean 0.1014
+INFOlocomo_eval    mean 0.1014
+2025-12-17 210929,635 - INFO -     std 0.1590
+INFOlocomo_eval    std 0.1590
+2025-12-17 210929,635 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,635 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,635 - INFO -     max 0.9815
+INFOlocomo_eval    max 0.9815
+2025-12-17 210929,635 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,635 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,635 - INFO -     mean 0.5672
+INFOlocomo_eval    mean 0.5672
+2025-12-17 210929,635 - INFO -     std 0.2430
+INFOlocomo_eval    std 0.2430
+2025-12-17 210929,635 - INFO -     median 0.6311
+INFOlocomo_eval    median 0.6311
+2025-12-17 210929,635 - INFO -     min -0.0122
+INFOlocomo_eval    min -0.0122
+2025-12-17 210929,635 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,635 - INFO -     count 321.0000
+INFOlocomo_eval    count 321.0000
+2025-12-17 210929,635 - INFO - 
+Category 3
+INFOlocomo_eval
+Category 3
+2025-12-17 210929,635 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,635 - INFO -     mean 0.0417
+INFOlocomo_eval    mean 0.0417
+2025-12-17 210929,636 - INFO -     std 0.2009
+INFOlocomo_eval    std 0.2009
+2025-12-17 210929,636 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,636 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,636 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,636 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,636 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,636 - INFO -     mean 0.1295
+INFOlocomo_eval    mean 0.1295
+2025-12-17 210929,636 - INFO -     std 0.2456
+INFOlocomo_eval    std 0.2456
+2025-12-17 210929,636 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,636 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,636 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,636 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,636 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,636 - INFO -     mean 0.1407
+INFOlocomo_eval    mean 0.1407
+2025-12-17 210929,636 - INFO -     std 0.2468
+INFOlocomo_eval    std 0.2468
+2025-12-17 210929,636 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,636 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,636 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,636 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,636 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,636 - INFO -     mean 0.0490
+INFOlocomo_eval    mean 0.0490
+2025-12-17 210929,636 - INFO -     std 0.1715
+INFOlocomo_eval    std 0.1715
+2025-12-17 210929,636 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,636 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,637 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,637 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,637 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,637 - INFO -     mean 0.1328
+INFOlocomo_eval    mean 0.1328
+2025-12-17 210929,637 - INFO -     std 0.2426
+INFOlocomo_eval    std 0.2426
+2025-12-17 210929,637 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,637 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,637 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,637 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,637 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,637 - INFO -     mean 0.1028
+INFOlocomo_eval    mean 0.1028
+2025-12-17 210929,637 - INFO -     std 0.2287
+INFOlocomo_eval    std 0.2287
+2025-12-17 210929,637 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,637 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,637 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,637 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,637 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,637 - INFO -     mean 0.0591
+INFOlocomo_eval    mean 0.0591
+2025-12-17 210929,637 - INFO -     std 0.1735
+INFOlocomo_eval    std 0.1735
+2025-12-17 210929,637 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,637 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,637 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,637 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,637 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,637 - INFO -     mean 0.0357
+INFOlocomo_eval    mean 0.0357
+2025-12-17 210929,638 - INFO -     std 0.1070
+INFOlocomo_eval    std 0.1070
+2025-12-17 210929,638 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,638 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,638 - INFO -     max 0.7391
+INFOlocomo_eval    max 0.7391
+2025-12-17 210929,638 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,638 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,638 - INFO -     mean 0.0270
+INFOlocomo_eval    mean 0.0270
+2025-12-17 210929,638 - INFO -     std 0.0867
+INFOlocomo_eval    std 0.0867
+2025-12-17 210929,638 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,638 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,638 - INFO -     max 0.6687
+INFOlocomo_eval    max 0.6687
+2025-12-17 210929,638 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,638 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,638 - INFO -     mean 0.8686
+INFOlocomo_eval    mean 0.8686
+2025-12-17 210929,638 - INFO -     std 0.0598
+INFOlocomo_eval    std 0.0598
+2025-12-17 210929,638 - INFO -     median 0.8543
+INFOlocomo_eval    median 0.8543
+2025-12-17 210929,638 - INFO -     min 0.7726
+INFOlocomo_eval    min 0.7726
+2025-12-17 210929,638 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,638 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,638 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,638 - INFO -     mean 0.8670
+INFOlocomo_eval    mean 0.8670
+2025-12-17 210929,638 - INFO -     std 0.0643
+INFOlocomo_eval    std 0.0643
+2025-12-17 210929,638 - INFO -     median 0.8524
+INFOlocomo_eval    median 0.8524
+2025-12-17 210929,638 - INFO -     min 0.7469
+INFOlocomo_eval    min 0.7469
+2025-12-17 210929,638 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,639 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,639 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,639 - INFO -     mean 0.8673
+INFOlocomo_eval    mean 0.8673
+2025-12-17 210929,639 - INFO -     std 0.0584
+INFOlocomo_eval    std 0.0584
+2025-12-17 210929,639 - INFO -     median 0.8512
+INFOlocomo_eval    median 0.8512
+2025-12-17 210929,639 - INFO -     min 0.7804
+INFOlocomo_eval    min 0.7804
+2025-12-17 210929,639 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,639 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,639 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,639 - INFO -     mean 0.0835
+INFOlocomo_eval    mean 0.0835
+2025-12-17 210929,639 - INFO -     std 0.2012
+INFOlocomo_eval    std 0.2012
+2025-12-17 210929,639 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,639 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,639 - INFO -     max 0.9960
+INFOlocomo_eval    max 0.9960
+2025-12-17 210929,639 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,639 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,639 - INFO -     mean 0.4122
+INFOlocomo_eval    mean 0.4122
+2025-12-17 210929,639 - INFO -     std 0.2524
+INFOlocomo_eval    std 0.2524
+2025-12-17 210929,639 - INFO -     median 0.3888
+INFOlocomo_eval    median 0.3888
+2025-12-17 210929,639 - INFO -     min -0.0246
+INFOlocomo_eval    min -0.0246
+2025-12-17 210929,639 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,639 - INFO -     count 96.0000
+INFOlocomo_eval    count 96.0000
+2025-12-17 210929,639 - INFO - 
+Category 4
+INFOlocomo_eval
+Category 4
+2025-12-17 210929,639 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,640 - INFO -     mean 0.0523
+INFOlocomo_eval    mean 0.0523
+2025-12-17 210929,640 - INFO -     std 0.2228
+INFOlocomo_eval    std 0.2228
+2025-12-17 210929,640 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,640 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,640 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,640 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,640 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,640 - INFO -     mean 0.1802
+INFOlocomo_eval    mean 0.1802
+2025-12-17 210929,640 - INFO -     std 0.2795
+INFOlocomo_eval    std 0.2795
+2025-12-17 210929,640 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,640 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,640 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,640 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,640 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,640 - INFO -     mean 0.1901
+INFOlocomo_eval    mean 0.1901
+2025-12-17 210929,640 - INFO -     std 0.2851
+INFOlocomo_eval    std 0.2851
+2025-12-17 210929,640 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,640 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,640 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,640 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,640 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,640 - INFO -     mean 0.0820
+INFOlocomo_eval    mean 0.0820
+2025-12-17 210929,640 - INFO -     std 0.2239
+INFOlocomo_eval    std 0.2239
+2025-12-17 210929,640 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,640 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,641 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,641 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,641 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,641 - INFO -     mean 0.1840
+INFOlocomo_eval    mean 0.1840
+2025-12-17 210929,641 - INFO -     std 0.2830
+INFOlocomo_eval    std 0.2830
+2025-12-17 210929,641 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,641 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,641 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,641 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,641 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,641 - INFO -     mean 0.1438
+INFOlocomo_eval    mean 0.1438
+2025-12-17 210929,641 - INFO -     std 0.2546
+INFOlocomo_eval    std 0.2546
+2025-12-17 210929,641 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,641 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,641 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,641 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,641 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,641 - INFO -     mean 0.0910
+INFOlocomo_eval    mean 0.0910
+2025-12-17 210929,641 - INFO -     std 0.2029
+INFOlocomo_eval    std 0.2029
+2025-12-17 210929,641 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,641 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,641 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,641 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,641 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,641 - INFO -     mean 0.0684
+INFOlocomo_eval    mean 0.0684
+2025-12-17 210929,642 - INFO -     std 0.1684
+INFOlocomo_eval    std 0.1684
+2025-12-17 210929,642 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,642 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,642 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,642 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,642 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,642 - INFO -     mean 0.0526
+INFOlocomo_eval    mean 0.0526
+2025-12-17 210929,642 - INFO -     std 0.1341
+INFOlocomo_eval    std 0.1341
+2025-12-17 210929,642 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,642 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,642 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,642 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,642 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,642 - INFO -     mean 0.8644
+INFOlocomo_eval    mean 0.8644
+2025-12-17 210929,642 - INFO -     std 0.0624
+INFOlocomo_eval    std 0.0624
+2025-12-17 210929,642 - INFO -     median 0.8604
+INFOlocomo_eval    median 0.8604
+2025-12-17 210929,642 - INFO -     min 0.5657
+INFOlocomo_eval    min 0.5657
+2025-12-17 210929,642 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,642 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,642 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,642 - INFO -     mean 0.8654
+INFOlocomo_eval    mean 0.8654
+2025-12-17 210929,642 - INFO -     std 0.0563
+INFOlocomo_eval    std 0.0563
+2025-12-17 210929,642 - INFO -     median 0.8568
+INFOlocomo_eval    median 0.8568
+2025-12-17 210929,642 - INFO -     min 0.6976
+INFOlocomo_eval    min 0.6976
+2025-12-17 210929,643 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,643 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,643 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,643 - INFO -     mean 0.8640
+INFOlocomo_eval    mean 0.8640
+2025-12-17 210929,643 - INFO -     std 0.0549
+INFOlocomo_eval    std 0.0549
+2025-12-17 210929,643 - INFO -     median 0.8557
+INFOlocomo_eval    median 0.8557
+2025-12-17 210929,643 - INFO -     min 0.6721
+INFOlocomo_eval    min 0.6721
+2025-12-17 210929,643 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,643 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,643 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,643 - INFO -     mean 0.1490
+INFOlocomo_eval    mean 0.1490
+2025-12-17 210929,643 - INFO -     std 0.2495
+INFOlocomo_eval    std 0.2495
+2025-12-17 210929,643 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,643 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,643 - INFO -     max 0.9993
+INFOlocomo_eval    max 0.9993
+2025-12-17 210929,643 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,643 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,643 - INFO -     mean 0.3531
+INFOlocomo_eval    mean 0.3531
+2025-12-17 210929,643 - INFO -     std 0.2678
+INFOlocomo_eval    std 0.2678
+2025-12-17 210929,643 - INFO -     median 0.2688
+INFOlocomo_eval    median 0.2688
+2025-12-17 210929,643 - INFO -     min -0.0776
+INFOlocomo_eval    min -0.0776
+2025-12-17 210929,643 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,643 - INFO -     count 841.0000
+INFOlocomo_eval    count 841.0000
+2025-12-17 210929,643 - INFO - 
+Category 5
+INFOlocomo_eval
+Category 5
+2025-12-17 210929,643 - INFO -   exact_match
+INFOlocomo_eval  exact_match
+2025-12-17 210929,644 - INFO -     mean 0.3722
+INFOlocomo_eval    mean 0.3722
+2025-12-17 210929,644 - INFO -     std 0.4839
+INFOlocomo_eval    std 0.4839
+2025-12-17 210929,644 - INFO -     median 0.0000
+INFOlocomo_eval    median 0.0000
+2025-12-17 210929,644 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,644 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,644 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,644 - INFO -   f1
+INFOlocomo_eval  f1
+2025-12-17 210929,644 - INFO -     mean 0.5617
+INFOlocomo_eval    mean 0.5617
+2025-12-17 210929,644 - INFO -     std 0.4132
+INFOlocomo_eval    std 0.4132
+2025-12-17 210929,644 - INFO -     median 0.6202
+INFOlocomo_eval    median 0.6202
+2025-12-17 210929,644 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,644 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,644 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,644 - INFO -   rouge1_f
+INFOlocomo_eval  rouge1_f
+2025-12-17 210929,644 - INFO -     mean 0.5715
+INFOlocomo_eval    mean 0.5715
+2025-12-17 210929,644 - INFO -     std 0.4114
+INFOlocomo_eval    std 0.4114
+2025-12-17 210929,644 - INFO -     median 0.6250
+INFOlocomo_eval    median 0.6250
+2025-12-17 210929,644 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,644 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,644 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,644 - INFO -   rouge2_f
+INFOlocomo_eval  rouge2_f
+2025-12-17 210929,644 - INFO -     mean 0.4565
+INFOlocomo_eval    mean 0.4565
+2025-12-17 210929,644 - INFO -     std 0.4362
+INFOlocomo_eval    std 0.4362
+2025-12-17 210929,644 - INFO -     median 0.4000
+INFOlocomo_eval    median 0.4000
+2025-12-17 210929,645 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,645 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,645 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,645 - INFO -   rougeL_f
+INFOlocomo_eval  rougeL_f
+2025-12-17 210929,645 - INFO -     mean 0.5710
+INFOlocomo_eval    mean 0.5710
+2025-12-17 210929,645 - INFO -     std 0.4119
+INFOlocomo_eval    std 0.4119
+2025-12-17 210929,645 - INFO -     median 0.6250
+INFOlocomo_eval    median 0.6250
+2025-12-17 210929,645 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,645 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,645 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,645 - INFO -   bleu1
+INFOlocomo_eval  bleu1
+2025-12-17 210929,645 - INFO -     mean 0.5059
+INFOlocomo_eval    mean 0.5059
+2025-12-17 210929,645 - INFO -     std 0.4231
+INFOlocomo_eval    std 0.4231
+2025-12-17 210929,645 - INFO -     median 0.4000
+INFOlocomo_eval    median 0.4000
+2025-12-17 210929,645 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,645 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,645 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,645 - INFO -   bleu2
+INFOlocomo_eval  bleu2
+2025-12-17 210929,645 - INFO -     mean 0.4428
+INFOlocomo_eval    mean 0.4428
+2025-12-17 210929,645 - INFO -     std 0.4126
+INFOlocomo_eval    std 0.4126
+2025-12-17 210929,645 - INFO -     median 0.3162
+INFOlocomo_eval    median 0.3162
+2025-12-17 210929,645 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,645 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,645 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,646 - INFO -   bleu3
+INFOlocomo_eval  bleu3
+2025-12-17 210929,646 - INFO -     mean 0.3868
+INFOlocomo_eval    mean 0.3868
+2025-12-17 210929,646 - INFO -     std 0.3938
+INFOlocomo_eval    std 0.3938
+2025-12-17 210929,646 - INFO -     median 0.2317
+INFOlocomo_eval    median 0.2317
+2025-12-17 210929,646 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,646 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,646 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,646 - INFO -   bleu4
+INFOlocomo_eval  bleu4
+2025-12-17 210929,646 - INFO -     mean 0.3343
+INFOlocomo_eval    mean 0.3343
+2025-12-17 210929,646 - INFO -     std 0.3707
+INFOlocomo_eval    std 0.3707
+2025-12-17 210929,646 - INFO -     median 0.1778
+INFOlocomo_eval    median 0.1778
+2025-12-17 210929,646 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,646 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,646 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,646 - INFO -   bert_precision
+INFOlocomo_eval  bert_precision
+2025-12-17 210929,646 - INFO -     mean 0.9222
+INFOlocomo_eval    mean 0.9222
+2025-12-17 210929,646 - INFO -     std 0.0653
+INFOlocomo_eval    std 0.0653
+2025-12-17 210929,646 - INFO -     median 0.9005
+INFOlocomo_eval    median 0.9005
+2025-12-17 210929,646 - INFO -     min 0.7615
+INFOlocomo_eval    min 0.7615
+2025-12-17 210929,646 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,646 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,646 - INFO -   bert_recall
+INFOlocomo_eval  bert_recall
+2025-12-17 210929,646 - INFO -     mean 0.9249
+INFOlocomo_eval    mean 0.9249
+2025-12-17 210929,646 - INFO -     std 0.0729
+INFOlocomo_eval    std 0.0729
+2025-12-17 210929,647 - INFO -     median 0.9359
+INFOlocomo_eval    median 0.9359
+2025-12-17 210929,647 - INFO -     min 0.7196
+INFOlocomo_eval    min 0.7196
+2025-12-17 210929,647 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,647 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,647 - INFO -   bert_f1
+INFOlocomo_eval  bert_f1
+2025-12-17 210929,647 - INFO -     mean 0.9230
+INFOlocomo_eval    mean 0.9230
+2025-12-17 210929,647 - INFO -     std 0.0665
+INFOlocomo_eval    std 0.0665
+2025-12-17 210929,647 - INFO -     median 0.9152
+INFOlocomo_eval    median 0.9152
+2025-12-17 210929,647 - INFO -     min 0.7832
+INFOlocomo_eval    min 0.7832
+2025-12-17 210929,647 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,647 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,647 - INFO -   meteor
+INFOlocomo_eval  meteor
+2025-12-17 210929,647 - INFO -     mean 0.5615
+INFOlocomo_eval    mean 0.5615
+2025-12-17 210929,647 - INFO -     std 0.4185
+INFOlocomo_eval    std 0.4185
+2025-12-17 210929,647 - INFO -     median 0.7212
+INFOlocomo_eval    median 0.7212
+2025-12-17 210929,647 - INFO -     min 0.0000
+INFOlocomo_eval    min 0.0000
+2025-12-17 210929,647 - INFO -     max 0.9998
+INFOlocomo_eval    max 0.9998
+2025-12-17 210929,647 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
+2025-12-17 210929,647 - INFO -   sbert_similarity
+INFOlocomo_eval  sbert_similarity
+2025-12-17 210929,647 - INFO -     mean 0.6437
+INFOlocomo_eval    mean 0.6437
+2025-12-17 210929,647 - INFO -     std 0.3823
+INFOlocomo_eval    std 0.3823
+2025-12-17 210929,647 - INFO -     median 0.7840
+INFOlocomo_eval    median 0.7840
+2025-12-17 210929,647 - INFO -     min -0.0509
+INFOlocomo_eval    min -0.0509
+2025-12-17 210929,647 - INFO -     max 1.0000
+INFOlocomo_eval    max 1.0000
+2025-12-17 210929,648 - INFO -     count 446.0000
+INFOlocomo_eval    count 446.0000
