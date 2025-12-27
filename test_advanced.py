@@ -260,6 +260,7 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
     for sample_idx, sample in enumerate(samples):
         agent = advancedMemAgent(model, backend, retrieve_k, temperature_c5, sglang_host, sglang_port)
         # Create memory cache filename based on sample and session indices
+        # 创建记忆文件路径
         memory_cache_file = os.path.join(
             memories_dir,
             f"memory_cache_sample_{sample_idx}.pkl"
@@ -274,7 +275,9 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
         )
 
         # Check if cached memories exist
+        # 检查缓存，查看记忆是否已经存在
         if os.path.exists(memory_cache_file):
+            # 如果存在则直接加载记忆
             logger.info(f"Loading cached memories for sample {sample_idx}")
             # try:
             with open(memory_cache_file, 'rb') as f:
@@ -295,12 +298,14 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
             #     logger.info(f"Error loading cached memories: {e}. Will recreate memories.")
             #     cached_memories = None
         else:
+            # 如果不存在，则创建保存记忆缓存
             logger.info(f"No cached memories found for sample {sample_idx}. Creating new memories.")
             cached_memories = None
 
             for _,turns in sample.conversation.sessions.items():
                 for turn in turns.turns:
                     turn_datatime = turns.date_time
+                    # **记忆格式
                     conversation_tmp = "Speaker "+ turn.speaker + "says : " + turn.text
                     agent.add_memory(conversation_tmp,time=turn_datatime)
                     # break
@@ -311,17 +316,21 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
             memories_to_cache = agent.memory_system.memories
             with open(memory_cache_file, 'wb') as f:
                 pickle.dump(memories_to_cache, f)
+            # 保存记忆
             agent.memory_system.retriever.save(retriever_cache_file,retriever_cache_embeddings_file)
             logger.info(f"\nSuccessfully cached {len(memories_to_cache)} memories")
             
         logger.info(f"\nProcessing sample {sample_idx + 1}/{len(samples)}")
         
         for qa in sample.qa:
+            # **只处理categories在1~5的问题
             if int(qa.category) in allow_categories:
+                # 计数
                 total_questions += 1
                 category_counts[qa.category] += 1
                 
                 # Generate prediction
+                # **生成预测
                 prediction, user_prompt,raw_context = agent.answer_question(qa.question,qa.category,qa.final_answer)
                 try:
                     prediction = json.loads(prediction)["answer"]
@@ -338,6 +347,7 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 logger.info(f"Raw Context: {raw_context}")
                 
                 # Calculate metrics
+                # 计算评估指标
                 metrics = calculate_metrics(prediction, qa.final_answer) if qa.final_answer else {
                     "exact_match": 0, "f1": 0.0, "rouge1_f": 0.0, "rouge2_f": 0.0, 
                     "rougeL_f": 0.0, "bleu1": 0.0, "bleu2": 0.0, "bleu3": 0.0, 
@@ -348,6 +358,7 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 all_categories.append(qa.category)
                 
                 # Store individual result
+                # 存储独立的节点
                 result = {
                     "sample_id": sample_idx,
                     "question": qa.question,
@@ -362,7 +373,8 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 if total_questions % 10 == 0:
                     logger.info(f"Processed {total_questions} questions")
     
-    # Calculate aggregate metrics
+    # 结果
+    # 计算聚合指标
     aggregate_results = aggregate_metrics(all_metrics, all_categories)
     
     # Prepare final results
@@ -404,14 +416,18 @@ def main():
     parser = argparse.ArgumentParser(description="Evaluate text-only agent on LoComo dataset")
     parser.add_argument("--dataset", type=str, default="data/locomo10.json",
                       help="Path to the dataset file")
-    parser.add_argument("--model", type=str, default="gpt-4o-mini",
+
+    parser.add_argument("--model", type=str, default="ollama/llama2",
                       help="OpenAI model to use")
+
     parser.add_argument("--output", type=str, default=None,
                       help="Path to save evaluation results")
     parser.add_argument("--ratio", type=float, default=1.0,
                       help="Ratio of dataset to evaluate (0.0 to 1.0)")
-    parser.add_argument("--backend", type=str, default="sglang",
+
+    parser.add_argument("--backend", type=str, default="ollama",
                       help="Backend to use (openai, ollama, or sglang)")
+
     parser.add_argument("--temperature_c5", type=float, default=0.5,
                       help="Temperature for the model")
     parser.add_argument("--retrieve_k", type=int, default=10,

@@ -1,0 +1,6 @@
+.vscode/
+__pycache__/
+a-mem/
+logs/
+data/dialsim*
+.claude/
