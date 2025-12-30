@@ -132,8 +132,16 @@ class advancedMemAgent:
         Returns:
             Tuple of (prediction, user_prompt, raw_context)
         """
-        # Use default question format
-        question = qa.questions.get('default', list(qa.questions.values())[0])
+        # Use default question format with robust fallback
+        if not qa.questions:
+            raise ValueError(f"Question {qa.question_id} has empty questions dict")
+
+        question = qa.questions.get('default')
+        if not question:
+            # Fallback to first available question if 'default' not found
+            question = next(iter(qa.questions.values()), None)
+            if not question:
+                raise ValueError(f"Question {qa.question_id} has no valid question text")
 
         # Generate keywords from question
         keywords = self.generate_query_llm(question)
@@ -344,57 +352,84 @@ def evaluate_dataset(
 
         # Process each question
         for qa_idx, qa in enumerate(questions):
-            total_questions += 1
-            category_counts[qa.category] += 1
-
-            # Generate prediction
-            prediction, user_prompt, raw_context = agent.answer_question(qa)
             try:
-                prediction = json.loads(prediction)["answer"]
-            except:
-                prediction = prediction.strip()
-                logger.info(f"Failed to parse prediction as JSON: {prediction}")
+                total_questions += 1
+                category_counts[qa.category] += 1
+
+                # Validate question data
+                if not qa.questions:
+                    logger.warning(f"Skipping question {qa.question_id}: empty questions dict")
+                    total_questions -= 1
+                    category_counts[qa.category] -= 1
+                    continue
+
+                # Generate prediction
+                try:
+                    prediction, user_prompt, raw_context = agent.answer_question(qa)
+                except Exception as e:
+                    logger.error(f"Error answering question {qa.question_id}: {str(e)}")
+                    logger.error(f"Question data: questions={qa.questions}, options={qa.options}")
+                    error_num += 1
+                    # Skip this question and continue
+                    total_questions -= 1
+                    category_counts[qa.category] -= 1
+                    continue
+
+                try:
+                    prediction = json.loads(prediction)["answer"]
+                except:
+                    prediction = prediction.strip()
+                    logger.info(f"Failed to parse prediction as JSON: {prediction}")
+                    error_num += 1
+
+                # Log results
+                logger.info(f"\nQuestion {total_questions} (Episode {sample_idx + 1}, Q{qa_idx + 1}/{len(questions)})")
+                logger.info(f"Category: {qa.category} ({qa.question_type})")
+                logger.info(f"Question: {qa.questions.get('default', list(qa.questions.values())[0] if qa.questions else 'N/A')}")
+                logger.info(f"Options: {qa.options}")
+                logger.info(f"Prediction: {prediction}")
+                logger.info(f"Reference: {qa.answer}")
+                logger.info(f"User Prompt: {user_prompt}")
+                logger.info(f"Raw Context: {raw_context}")
+
+                # Calculate metrics (exact match for multiple choice)
+                metrics = calculate_metrics(prediction, qa.answer) if qa.answer else {
+                    "exact_match": 0, "f1": 0.0, "rouge1_f": 0.0, "rouge2_f": 0.0,
+                    "rougeL_f": 0.0, "bleu1": 0.0, "bleu2": 0.0, "bleu3": 0.0,
+                    "bleu4": 0.0, "bert_f1": 0.0, "meteor": 0.0, "sbert_similarity": 0.0
+                }
+
+                all_metrics.append(metrics)
+                all_categories.append(qa.category)
+
+                # Store individual result
+                result = {
+                    "episode": sample.sample_id,
+                    "question_id": qa.question_id,
+                    "question": qa.questions.get('default', list(qa.questions.values())[0] if qa.questions else 'N/A'),
+                    "prediction": prediction,
+                    "reference": qa.answer,
+                    "category": qa.category,
+                    "question_type": qa.question_type,
+                    "options": qa.options,
+                    "metrics": metrics
+                }
+                results.append(result)
+
+                # Log progress
+                if total_questions % 50 == 0:
+                    logger.info(f"\n{'='*60}")
+                    logger.info(f"Progress: Processed {total_questions} questions")
+                    logger.info(f"{'='*60}")
+
+            except Exception as e:
+                logger.error(f"Unexpected error processing question {qa_idx + 1} in episode {sample.sample_id}: {str(e)}")
+                logger.error(f"Error type: {type(e).__name__}")
+                import traceback
+                logger.error(f"Traceback: {traceback.format_exc()}")
                 error_num += 1
-
-            # Log results
-            logger.info(f"\nQuestion {total_questions} (Episode {sample_idx + 1}, Q{qa_idx + 1}/{len(questions)})")
-            logger.info(f"Category: {qa.category} ({qa.question_type})")
-            logger.info(f"Question: {qa.questions.get('default', '')}")
-            logger.info(f"Options: {qa.options}")
-            logger.info(f"Prediction: {prediction}")
-            logger.info(f"Reference: {qa.answer}")
-            logger.info(f"User Prompt: {user_prompt}")
-            logger.info(f"Raw Context: {raw_context}")
-
-            # Calculate metrics (exact match for multiple choice)
-            metrics = calculate_metrics(prediction, qa.answer) if qa.answer else {
-                "exact_match": 0, "f1": 0.0, "rouge1_f": 0.0, "rouge2_f": 0.0,
-                "rougeL_f": 0.0, "bleu1": 0.0, "bleu2": 0.0, "bleu3": 0.0,
-                "bleu4": 0.0, "bert_f1": 0.0, "meteor": 0.0, "sbert_similarity": 0.0
-            }
-
-            all_metrics.append(metrics)
-            all_categories.append(qa.category)
-
-            # Store individual result
-            result = {
-                "episode": sample.sample_id,
-                "question_id": qa.question_id,
-                "question": qa.questions.get('default', ''),
-                "prediction": prediction,
-                "reference": qa.answer,
-                "category": qa.category,
-                "question_type": qa.question_type,
-                "options": qa.options,
-                "metrics": metrics
-            }
-            results.append(result)
-
-            # Log progress
-            if total_questions % 50 == 0:
-                logger.info(f"\n{'='*60}")
-                logger.info(f"Progress: Processed {total_questions} questions")
-                logger.info(f"{'='*60}")
+                # Continue with next question instead of crashing
+                continue
 
     # Calculate aggregate metrics
     aggregate_results = aggregate_metrics(all_metrics, all_categories)

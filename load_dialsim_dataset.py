@@ -61,10 +61,16 @@ def parse_dialsim_questions(episode_name: str, scene_id: int, question_type: str
         if questions_data and isinstance(questions_data, list):
             for idx, q_data in enumerate(questions_data):
                 if isinstance(q_data, dict) and 'questions' in q_data:
+                    # Validate questions field
+                    questions = q_data['questions']
+                    if not questions or not isinstance(questions, dict):
+                        print(f"Warning: Skipping invalid question in {episode_name} S{scene_id} {question_type} {category} #{idx}: empty or invalid questions field")
+                        continue
+
                     question_id = f"{episode_name}_S{scene_id}_{question_type}_{category}_{idx}"
                     qa = DialSimQA(
                         question_id=question_id,
-                        questions=q_data['questions'],
+                        questions=questions,
                         options=q_data.get('options', []),
                         answer=q_data.get('answer', ''),
                         category=category,
@@ -78,10 +84,16 @@ def parse_dialsim_questions(episode_name: str, scene_id: int, question_type: str
         if questions_data and isinstance(questions_data, dict):
             for q_id, q_data in questions_data.items():
                 if isinstance(q_data, dict) and 'questions' in q_data:
+                    # Validate questions field
+                    questions = q_data['questions']
+                    if not questions or not isinstance(questions, dict):
+                        print(f"Warning: Skipping invalid question in {episode_name} S{scene_id} {question_type} {category} #{q_id}: empty or invalid questions field")
+                        continue
+
                     question_id = f"{episode_name}_S{scene_id}_{question_type}_{category}_{q_id}"
                     qa = DialSimQA(
                         question_id=question_id,
-                        questions=q_data['questions'],
+                        questions=questions,
                         options=q_data.get('options', []),
                         answer=q_data.get('answer', ''),
                         category=category,

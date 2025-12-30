@@ -25,6 +25,7 @@ print(f"Script preview: {first_scene.get('script')[:200]}\n")
 # Check questions
 print("=" * 50)
 print("Looking for questions in dataset...")
+print(f"first_episode scene1: {first_scene}:")
 print("=" * 50)
 
 total_hard_q = 0
