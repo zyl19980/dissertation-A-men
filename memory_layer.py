@@ -172,6 +172,70 @@ class SGLangController(BaseLLMController):
             empty_response = self._generate_empty_response(response_format)
             return json.dumps(empty_response)
 
+class vLLMController(BaseLLMController):
+    """vLLM controller using OpenAI-compatible API"""
+    def __init__(self, model: str = "qwen", vllm_host: str = "http://localhost", vllm_port: int = 8000):
+        try:
+            from openai import OpenAI
+            self.model = model
+            self.vllm_host = vllm_host
+            self.vllm_port = vllm_port
+            self.base_url = f"{vllm_host}:{vllm_port}/v1"
+            # Initialize OpenAI client pointing to vLLM server
+            self.client = OpenAI(
+                api_key="EMPTY",  # vLLM doesn't require a real API key
+                base_url=self.base_url
+            )
+            print(f"vLLM controller initialized: {self.base_url}")
+        except ImportError:
+            raise ImportError("OpenAI package not found. Install it with: pip install openai")
+
+    def _generate_empty_value(self, schema_type: str, schema_items: dict = None) -> Any:
+        if schema_type == "array":
+            return []
+        elif schema_type == "string":
+            return ""
+        elif schema_type == "object":
+            return {}
+        elif schema_type == "number" or schema_type == "integer":
+            return 0
+        elif schema_type == "boolean":
+            return False
+        return None
+
+    def _generate_empty_response(self, response_format: dict) -> dict:
+        if "json_schema" not in response_format:
+            return {}
+
+        schema = response_format["json_schema"]["schema"]
+        result = {}
+
+        if "properties" in schema:
+            for prop_name, prop_schema in schema["properties"].items():
+                result[prop_name] = self._generate_empty_value(prop_schema["type"],
+                                                            prop_schema.get("items"))
+
+        return result
+
+    def get_completion(self, prompt: str, response_format: dict, temperature: float = 0.7) -> str:
+        try:
+            # Call vLLM using OpenAI-compatible API
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": "You must respond with a JSON object."},
+                    {"role": "user", "content": prompt}
+                ],
+                response_format=response_format,
+                temperature=temperature,
+                max_tokens=1000
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            print(f"vLLM completion error: {e}")
+            empty_response = self._generate_empty_response(response_format)
+            return json.dumps(empty_response)
+
 class LiteLLMController(BaseLLMController):
     """LiteLLM controller for universal LLM access including Ollama and SGLang"""
     def __init__(self, model: str, api_base: Optional[str] = None, api_key: Optional[str] = None):
@@ -235,30 +299,36 @@ class LiteLLMController(BaseLLMController):
 
 class LLMController:
     """LLM-based controller for memory metadata generation"""
-    def __init__(self, 
-                 backend: Literal["openai", "ollama", "sglang"] = "sglang",
-                 model: str = "gpt-4", 
+    def __init__(self,
+                 backend: Literal["openai", "ollama", "sglang", "vllm"] = "sglang",
+                 model: str = "gpt-4",
                  api_key: Optional[str] = None,
                  api_base: Optional[str] = None,
                  sglang_host: str = "http://localhost",
-                 sglang_port: int = 30000):
+                 sglang_port: int = 30000,
+                 vllm_host: str = "http://localhost",
+                 vllm_port: int = 8000):
         if backend == "openai":
             self.llm = OpenAIController(model, api_key)
         elif backend == "ollama":
             # Use LiteLLM to control Ollama with JSON output
             ollama_model = f"ollama/{model}" if not model.startswith("ollama/") else model
             self.llm = LiteLLMController(
-                model=ollama_model, 
-                api_base="http://localhost:11434", 
+                model=ollama_model,
+                api_base="http://localhost:11434",
                 api_key="EMPTY"
             )
         elif backend == "sglang":
             # Direct SGLang API calls (better performance, no proxy)
             self.llm = SGLangController(model, sglang_host, sglang_port)
+        elif backend == "vllm":
+            # Direct vLLM API calls using OpenAI-compatible interface
+            self.llm = vLLMController(model, vllm_host, vllm_port)
         else:
-            raise ValueError("Backend must be 'openai', 'ollama', or 'sglang'")
+            raise ValueError("Backend must be 'openai', 'ollama', 'sglang', or 'vllm'")
 
 class MemoryNote:
+    """构建笔记单元"""
     """Basic memory unit with metadata"""
     def __init__(self, 
                  content: str,
@@ -392,7 +462,7 @@ class MemoryNote:
             
         except Exception as e:
             print(f"Error analyzing content: {str(e)}")
-            print(f"Raw response: {response}")
+            # Return default empty response when error occurs
             return {
                 "keywords": [],
                 "context": "General",
@@ -401,6 +471,7 @@ class MemoryNote:
             }
 
 class HybridRetriever:
+    """结合BM25和语义搜索的混合检索系统"""
     """Hybrid retrieval system combining BM25 and semantic search."""
     
     def __init__(self, model_name: str = 'all-MiniLM-L6-v2', alpha: float = 0.5):
@@ -552,6 +623,7 @@ class HybridRetriever:
         return top_k_indices.tolist()
 
 class SimpleEmbeddingRetriever:
+    """仅使用文本键入的简单检索系统"""
     """Simple retrieval system using only text embeddings."""
     
     def __init__(self, model_name: str = 'all-MiniLM-L6-v2'):
@@ -567,6 +639,7 @@ class SimpleEmbeddingRetriever:
         
     def add_documents(self, documents: List[str]):
         """Add documents to the retriever."""
+        
         # Reset if no existing documents
         if not self.corpus:
             self.corpus = documents
@@ -576,12 +649,15 @@ class SimpleEmbeddingRetriever:
         else:
             # Append new documents
             start_idx = len(self.corpus)
+            # 步骤 5.1: 使用 SentenceTransformer 编码文档
+            # 步骤 5.2: 更新语料库和嵌入矩阵
             self.corpus.extend(documents)
             new_embeddings = self.model.encode(documents)
             if self.embeddings is None:
                 self.embeddings = new_embeddings
             else:
                 self.embeddings = np.vstack([self.embeddings, new_embeddings])
+            # 步骤 5.3: 建立文档索引映射
             for idx, doc in enumerate(documents):
                 self.document_ids[doc] = start_idx + idx
     
@@ -664,8 +740,9 @@ class SimpleEmbeddingRetriever:
         return retriever
 
 class AgenticMemorySystem:
+    """基于嵌入检索的内存管理系统"""
     """Memory management system with embedding-based retrieval"""
-    def __init__(self, 
+    def __init__(self,
                  model_name: str = 'all-MiniLM-L6-v2',
                  llm_backend: str = "sglang",
                  llm_model: str = "gpt-4o-mini",
@@ -673,10 +750,12 @@ class AgenticMemorySystem:
                  api_key: Optional[str] = None,
                  api_base: Optional[str] = None,
                  sglang_host: str = "http://localhost",
-                 sglang_port: int = 30000):
+                 sglang_port: int = 30000,
+                 vllm_host: str = "http://localhost",
+                 vllm_port: int = 8000):
         self.memories = {}  # id -> MemoryNote
         self.retriever = SimpleEmbeddingRetriever(model_name)
-        self.llm_controller = LLMController(llm_backend, llm_model, api_key, api_base, sglang_host, sglang_port)
+        self.llm_controller = LLMController(llm_backend, llm_model, api_key, api_base, sglang_host, sglang_port, vllm_host, vllm_port)
         self.evolution_system_prompt = '''
                                 You are an AI memory evolution agent responsible for managing and evolving a knowledge base.
                                 Analyze the the new memory note according to keywords and context, also with their several nearest neighbors memory.
@@ -713,25 +792,31 @@ class AgenticMemorySystem:
 
     def add_note(self, content: str, time: str = None, **kwargs) -> str:
         """Add a new memory note"""
+        """创建MemoryNote对象"""
         note = MemoryNote(content=content, llm_controller=self.llm_controller, timestamp=time, **kwargs)
         
         # Update retriever with all documents
         # all_docs = [m.content for m in self.memories.values()]
+        # 处理记忆演化
         evo_label, note = self.process_memory(note)
+        # 存储记忆
         self.memories[note.id] = note
+        # 更新检索器
         self.retriever.add_documents(["content:" + note.content + " context:" + note.context + " keywords: " + ", ".join(note.keywords) + " tags: " + ", ".join(note.tags)])
         if evo_label == True:
+            # 定期整合记忆
             self.evo_cnt += 1
             if self.evo_cnt % self.evo_threshold == 0:
+                # 默认每100次后，会重建检索器
                 self.consolidate_memories()
         return note.id
     
     def consolidate_memories(self):
-        """Consolidate memories: update retriever with new documents
+        """整合记忆：用新文档更新检索器
         
-        This function re-initializes the retriever and updates it with all memory documents,
-        including their context, keywords, and tags to ensure the retrieval system has the
-        latest state of all memories.
+        此功能重新初始化检索器，并用所有记忆文档更新它，
+        包括其上下文、关键词和标签，以确保检索系统拥有
+        所有记忆的最新状态。
         """
         # Reset the retriever with the same model
         try:
@@ -751,8 +836,12 @@ class AgenticMemorySystem:
             self.retriever.add_documents([memory.content + " , " + metadata_text])
     
     def process_memory(self, note: MemoryNote) -> bool:
+        """处理记忆笔记并返回演化标签"""
         """Process a memory note and return an evolution label"""
+        # 找到相关的邻居记忆
         neighbor_memory, indices = self.find_related_memories(note.content, k=5)
+        
+        # 构造Prompt，让LLm决定如何处理关系
         prompt_memory = self.evolution_system_prompt.format(context=note.context, content=note.content, keywords=note.keywords, nearest_neighbors_memories=neighbor_memory,neighbor_number=len(indices))
         print("prompt_memory", prompt_memory)
         response = self.llm_controller.llm.get_completion(
@@ -806,6 +895,7 @@ class AgenticMemorySystem:
         )
         try:
             print("response", response, type(response))
+            # 解析response，获得对应的json结构
             # Clean the response in case there's extra text
             response_cleaned = response.strip()
             # Try to find JSON content if wrapped in other text
@@ -830,13 +920,16 @@ class AgenticMemorySystem:
             actions = response_json["actions"]
             for action in actions:
                 if action == "strengthen":
+                    # 如果是strengthen，建立笔记连接
                     suggest_connections = response_json["suggested_connections"]
                     new_tags = response_json["tags_to_update"]
                     note.links.extend(suggest_connections)
                     note.tags = new_tags
                 elif action == "update_neighbor":
+                    # 获取LLM生成的新上下文和标签
                     new_context_neighborhood = response_json["new_context_neighborhood"]
                     new_tags_neighborhood = response_json["new_tags_neighborhood"]
+                    # 遍历邻居，直接修改旧记忆的属性
                     noteslist = list(self.memories.values())
                     notes_id = list(self.memories.keys())
                     print("indices", indices)
@@ -880,10 +973,12 @@ class AgenticMemorySystem:
             return []
             
         # Get indices of related memories
+        # 获取相关记忆的索引
         # indices = self.retriever.retrieve(query_note.content, k)
         indices = self.retriever.search(query, k)
         
         # Convert to list of memories
+        # 转换为记忆列表
         all_memories = list(self.memories.values())
         memory_str = ""
         for i in indices:

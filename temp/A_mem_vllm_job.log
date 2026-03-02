@@ -1,0 +1,27 @@
+==========================================
+Job starting on compute node...
+Job ID: 13029851.pbs101
+Start time: Mon Mar  2 15:27:58 +08 2026
+==========================================
+Working directory: /home/users/ntu/yzheng05/workspace/newTest/A-mem
+Loading Python environment...
+Loading Singularity module...
+OpenAI API Base URL: http://localhost:10203/v1
+==========================================
+Starting vLLM server...
+Model: /scratch/users/ntu/yzheng05/model_weights/Qwen2.5-7B-Instruct
+Port: 10203
+==========================================
+vLLM server started with PID: 1314635
+Waiting for vLLM server to be ready...
+Waiting... (0 seconds elapsed)
+Waiting... (10 seconds elapsed)
+Waiting... (20 seconds elapsed)
+Waiting... (30 seconds elapsed)
+Waiting... (40 seconds elapsed)
+vLLM server is ready!
+==========================================
+Starting A-mem evaluation...
+Backend: openai (connecting to vLLM)
+Model: qwen
+==========================================

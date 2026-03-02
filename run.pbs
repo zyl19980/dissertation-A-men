@@ -1,0 +1,34 @@
+#!/bin/bash
+#PBS -N A_Mem_Job
+#PBS -q normal
+#PBS -l select=1:ncpus=8:ngpus=1:mem=32gb
+#PBS -l walltime=06:00:00
+#PBS -j oe
+#PBS -o A_mem_job.log
+#PBS -P personal-yzheng05
+
+echo "Job starting on compute node..."
+
+# 1. 切换到工作目录
+cd "$PBS_O_WORKDIR"
+
+# 1.1 激活虚拟环境
+module load miniforge3
+conda activate A-mem-3.11
+
+# 3. 告诉 Ollama 我们的离线模型库在哪里
+export OLLAMA_MODELS=/home/users/ntu/yzheng05/ollama-files/models
+
+# 4. 告诉 Ollama 在本地运行
+export OLLAMA_HOST=127.0.0.1:11434
+
+# 5. 【已修正】在后台启动 Ollama 服务 (使用正确路径)
+echo "Starting Ollama service..."
+/home/users/ntu/yzheng05/ollama-files/bin/ollama serve &
+
+# 6. 等待服务器启动 (10-15秒)
+sleep 15 
+
+python -u test_advanced.py > test_advanced_20025_12_15_001_sglang.log 2>&1
+
+echo "Job finished."
