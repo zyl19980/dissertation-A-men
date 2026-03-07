@@ -13,6 +13,7 @@ import nltk
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.util import pytorch_cos_sim
 import statistics
+import gc  # 添加垃圾回收模块
 from collections import defaultdict
 import pickle
 import random
@@ -366,7 +367,21 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                 # Log progress
                 if total_questions % 10 == 0:
                     logger.info(f"Processed {total_questions} questions")
-    
+
+        # Memory cleanup after processing each sample
+        del agent
+        gc.collect()
+
+        # Log memory usage every 10 samples
+        if sample_idx % 10 == 0:
+            try:
+                import psutil
+                process = psutil.Process()
+                mem_gb = process.memory_info().rss / 1024 / 1024 / 1024
+                logger.info(f"Sample {sample_idx}: Memory usage = {mem_gb:.2f} GB")
+            except ImportError:
+                pass
+
     # Calculate aggregate metrics
     aggregate_results = aggregate_metrics(all_metrics, all_categories)
     

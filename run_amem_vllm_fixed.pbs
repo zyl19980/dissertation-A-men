@@ -1,0 +1,168 @@
+#!/bin/bash
+#PBS -N A_Mem_vLLM
+#PBS -q normal
+#PBS -l select=1:ncpus=8:ngpus=1:mem=240gb
+#PBS -l walltime=24:00:00
+#PBS -j oe
+#PBS -o A_mem_vllm_job.log
+#PBS -P personal-yzheng05
+
+echo "=========================================="
+echo "Job starting on compute node..."
+echo "Job ID: $PBS_JOBID"
+echo "Start time: $(date)"
+echo "=========================================="
+
+# ==========================================
+# 1. 切换到工作目录
+# ==========================================
+cd "$PBS_O_WORKDIR"
+echo "Working directory: $(pwd)"
+
+# ==========================================
+# 2. 激活 Python 环境
+# ==========================================
+echo "Loading Python environment..."
+module load miniforge3
+conda activate A-mem-3.11
+
+# ==========================================
+# 3. 基础配置
+# ==========================================
+MODEL_PATH="/scratch/users/ntu/yzheng05/model_weights/Qwen2.5-7B-Instruct"
+SIF_IMAGE="/home/users/ntu/yzheng05/scratch/vllm_image/agent_vllm_v2.sif"
+PORT=10203
+MODEL_NAME="qwen"
+
+# ==========================================
+# 4. 加载 Singularity
+# ==========================================
+echo "Loading Singularity module..."
+module load singularity
+
+# ==========================================
+# 5. 配置缓存路径 (解决 vLLM 500 报错)
+# ==========================================
+CACHE_ROOT="/scratch/users/ntu/yzheng05/.cache"
+mkdir -p $CACHE_ROOT/numba $CACHE_ROOT/outlines $CACHE_ROOT/huggingface
+
+export NUMBA_CACHE_DIR=$CACHE_ROOT/numba
+export OUTLINES_CACHE_DIR=$CACHE_ROOT/outlines
+export HF_HOME=$CACHE_ROOT/huggingface
+
+# ==========================================
+# 6. HPC 环境兼容性设置
+# ==========================================
+export CUDA_VISIBLE_DEVICES=0
+export NCCL_P2P_DISABLE=1
+export NCCL_IB_DISABLE=1
+export LC_ALL=C.UTF-8
+
+# ==========================================
+# 7. 启动 vLLM 服务（关键修复：降低 max-model-len）
+# ==========================================
+echo "=========================================="
+echo "Starting vLLM server..."
+echo "Model: $MODEL_PATH"
+echo "Port: $PORT"
+echo "=========================================="
+
+nohup singularity run --nv \
+  -B /dev/shm:/dev/shm \
+  -B /scratch/users/ntu/yzheng05:/scratch \
+  -B $MODEL_PATH:/model \
+  $SIF_IMAGE \
+  --model /model \
+  --served-model-name $MODEL_NAME \
+  --port $PORT \
+  --dtype bfloat16 \
+  --gpu-memory-utilization 0.75 \
+  --max-model-len 8192 \
+  --max-num-seqs 8 \
+  --enforce-eager \
+  --trust-remote-code \
+  --disable-log-requests \
+  > vllm_server.log 2>&1 &
+
+VLLM_PID=$!
+echo "vLLM server started with PID: $VLLM_PID"
+
+# ==========================================
+# 8. 等待 vLLM 服务器启动
+# ==========================================
+echo "Waiting for vLLM server to be ready..."
+MAX_WAIT=300  # 增加到 5 分钟，因为模型加载可能需要更长时间
+WAIT_TIME=0
+
+while [ $WAIT_TIME -lt $MAX_WAIT ]; do
+    if curl -s "http://localhost:${PORT}/v1/models" > /dev/null 2>&1; then
+        echo "vLLM server is ready!"
+        break
+    fi
+    echo "Waiting... ($WAIT_TIME seconds elapsed)"
+    sleep 10
+    WAIT_TIME=$((WAIT_TIME + 10))
+done
+
+if [ $WAIT_TIME -ge $MAX_WAIT ]; then
+    echo "ERROR: vLLM server failed to start within $MAX_WAIT seconds"
+    echo "Check vllm_server.log for details"
+    tail -100 vllm_server.log
+    exit 1
+fi
+
+# ==========================================
+# 9. 运行 A-mem 测试
+# ==========================================
+echo "=========================================="
+echo "Starting A-mem evaluation..."
+echo "Backend: vllm"
+echo "Model: $MODEL_NAME"
+echo "vLLM Host: http://localhost"
+echo "vLLM Port: $PORT"
+echo "=========================================="
+
+# 生成时间戳用于日志文件名
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+LOG_FILE="test_advanced_vllm_${TIMESTAMP}.log"
+
+# 运行测试 - 使用新的 vllm backend
+# 添加 Python 垃圾回收优化
+export PYTHONHASHSEED=0
+export OMP_NUM_THREADS=4
+
+python -u test_advanced.py \
+    --dataset data/locomo.json \
+    --model $MODEL_NAME \
+    --backend vllm \
+    --vllm_host http://localhost \
+    --vllm_port $PORT \
+    --ratio 0.1 \
+    --temperature_c5 0.5 \
+    --retrieve_k 10 \
+    > $LOG_FILE 2>&1
+
+TEST_EXIT_CODE=$?
+
+# ==========================================
+# 10. 清理资源
+# ==========================================
+echo "=========================================="
+echo "Cleaning up..."
+echo "Stopping vLLM server (PID: $VLLM_PID)..."
+kill $VLLM_PID 2>/dev/null || true
+sleep 5
+kill -9 $VLLM_PID 2>/dev/null || true
+
+# 清理可能的僵尸进程
+pkill -9 -f "vllm.entrypoints" || true
+
+echo "=========================================="
+echo "Job finished!"
+echo "End time: $(date)"
+echo "Test exit code: $TEST_EXIT_CODE"
+echo "Results saved to: $LOG_FILE"
+echo "vLLM server log: vllm_server.log"
+echo "=========================================="
+
+exit $TEST_EXIT_CODE
