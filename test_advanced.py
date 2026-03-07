@@ -261,6 +261,7 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
     memories_dir = os.path.join(os.path.dirname(__file__), "cached_memories_advanced_{}_{}".format(backend, model))
     os.makedirs(memories_dir, exist_ok=True)
     allow_categories = [1,2,3,4,5]
+    
     for sample_idx, sample in enumerate(samples):
         agent = advancedMemAgent(model, backend, retrieve_k, temperature_c5, sglang_host, sglang_port, vllm_host, vllm_port)
         # 根据样本和会话索引创建内存缓存文件名

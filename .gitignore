@@ -1,0 +1,3 @@
+test_*
+run_amem_vllm.pbs
+*.log

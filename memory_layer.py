@@ -17,6 +17,8 @@ from litellm import completion
 import requests
 import json as json_lib
 import time
+import re    # 用于正则表达式清理
+import json  # 用于解析 LLM 返回的 JSON
 
 def simple_tokenize(text):
     return word_tokenize(text)
@@ -447,11 +449,12 @@ class MemoryNote:
             #         if end_idx != -1:
             #             response_cleaned = response_cleaned[:end_idx+1]
             try:        
-                response = re.sub(r'^```json\s*|\s*```$', '', response, flags=re.MULTILINE).strip()
-                analysis = json.loads(response)
-            except:
+                response_cleaned = re.sub(r'^```json\s*|\s*```$', '', response, flags=re.MULTILINE).strip()
+                response_cleaned = response_cleaned.replace('True', 'true').replace('False', 'false')
+                analysis = json.loads(response_cleaned)
+            except Exception as e:
                 print(f"JSON parsing error in analyze_content: {e}")
-                print(f"Raw response: {response}")
+                print(f"Raw response: {response_cleaned}")
                 analysis = {
                     "keywords": [],
                     "context": "General",
@@ -462,7 +465,7 @@ class MemoryNote:
             
         except Exception as e:
             print(f"Error analyzing content: {str(e)}")
-            # Return default empty response when error occurs
+            # Return default Error analyzing contentempty response when error occurs
             return {
                 "keywords": [],
                 "context": "General",
@@ -907,7 +910,8 @@ class AgenticMemorySystem:
                 end_idx = response_cleaned.rfind('}')
                 if end_idx != -1:
                     response_cleaned = response_cleaned[:end_idx+1]
-            
+
+            response_cleaned = response_cleaned.replace('True', 'true').replace('False', 'false')
             response_json = json.loads(response_cleaned)
             print("response_json", response_json, type(response_json))
         except json.JSONDecodeError as e:
@@ -922,13 +926,42 @@ class AgenticMemorySystem:
                 if action == "strengthen":
                     # 如果是strengthen，建立笔记连接
                     suggest_connections = response_json["suggested_connections"]
-                    new_tags = response_json["tags_to_update"]
+                    raw_new_tags = response_json["tags_to_update"]
+                    
+                    for conn in suggest_connections:
+                        nums = re.findall(r'\d+', str(conn))
+                        if nums:
+                            suggest_connections.append(int(nums[0]))
+                    
                     note.links.extend(suggest_connections)
-                    note.tags = new_tags
+
+                    # 修复逻辑：处理嵌套列表，将其扁平化为单一列表
+                    flattened_tags = []
+                    if isinstance(raw_new_tags, list):
+                        for item in raw_new_tags:
+                            if isinstance(item, list):
+                                # 如果是嵌套列表，将其内部元素全部转为字符串并加入
+                                flattened_tags.extend([str(t) for t in item])
+                            else:
+                                flattened_tags.append(str(item))
+                        # 去重并赋值给 note.tags
+                        note.tags = list(set(flattened_tags))
+                    else:
+                        note.tags = raw_new_tags
+                    
                 elif action == "update_neighbor":
                     # 获取LLM生成的新上下文和标签
-                    new_context_neighborhood = response_json["new_context_neighborhood"]
-                    new_tags_neighborhood = response_json["new_tags_neighborhood"]
+                    new_context_neighborhood = response_json.get("new_context_neighborhood", [])
+                    # 修复逻辑：如果缺失 new_tags_neighborhood，尝试看是不是被模型错放在了 tags_to_update 里
+                    new_tags_neighborhood = response_json.get("new_tags_neighborhood")
+                    
+                    if new_tags_neighborhood is None:
+                        # 如果 tags_to_update 是嵌套列表，说明模型写错地方了，我们把它拿过来用
+                        possible_tags = response_json.get("tags_to_update", [])
+                        if len(possible_tags) > 0 and isinstance(possible_tags[0], list):
+                            new_tags_neighborhood = possible_tags
+                        else:
+                            new_tags_neighborhood = [] # 彻底没有就给空列表防止崩溃
                     # 遍历邻居，直接修改旧记忆的属性
                     noteslist = list(self.memories.values())
                     notes_id = list(self.memories.keys())
@@ -967,29 +1000,47 @@ class AgenticMemorySystem:
             memory_str += "memory index:" + str(i) + "\t talk start time:" + all_memories[i].timestamp + "\t memory content: " + all_memories[i].content + "\t memory context: " + all_memories[i].context + "\t memory keywords: " + str(all_memories[i].keywords) + "\t memory tags: " + str(all_memories[i].tags) + "\n"
         return memory_str, indices
 
-    def find_related_memories_raw(self, query: str, k: int = 5) -> List[MemoryNote]:
+    def find_related_memories_raw(self, query: str, k: int = 5) -> str:
         """Find related memories using hybrid retrieval"""
         if not self.memories:
-            return []
+            return ""
             
-        # Get indices of related memories
-        # 获取相关记忆的索引
-        # indices = self.retriever.retrieve(query_note.content, k)
         indices = self.retriever.search(query, k)
-        
-        # Convert to list of memories
-        # 转换为记忆列表
         all_memories = list(self.memories.values())
         memory_str = ""
+        
         for i in indices:
-            j = 0
-            memory_str +=  "talk start time:" + all_memories[i].timestamp + "memory content: " + all_memories[i].content + "memory context: " + all_memories[i].context + "memory keywords: " + str(all_memories[i].keywords) + "memory tags: " + str(all_memories[i].tags) + "\n"
+            # 基础记忆信息拼接
+            memory_str += "talk start time:" + all_memories[i].timestamp + " memory content: " + all_memories[i].content + " ...\n"
+            
             neighborhood = all_memories[i].links
+            j = 0
             for neighbor in neighborhood:
-                memory_str += "talk start time:" + all_memories[neighbor].timestamp + "memory content: " + all_memories[neighbor].content + "memory context: " + all_memories[neighbor].context + "memory keywords: " + str(all_memories[neighbor].keywords) + "memory tags: " + str(all_memories[neighbor].tags) + "\n"
-                if j >=k:
-                    break
-                j += 1
+                try:
+                    # 核心修复：处理可能的字符串索引，提取其中的数字
+                    # 例如将 "76" 或 "memory_index:76" 转换为 76
+                    if isinstance(neighbor, str):
+                        nums = re.findall(r'\d+', neighbor)
+                        if not nums:
+                            continue
+                        neighbor_idx = int(nums[0])
+                    else:
+                        neighbor_idx = int(neighbor)
+
+                    # 检查索引是否越界
+                    if neighbor_idx < 0 or neighbor_idx >= len(all_memories):
+                        continue
+
+                    # 使用转换后的整数索引 neighbor_idx 
+                    m = all_memories[neighbor_idx]
+                    memory_str += f"talk start time:{m.timestamp} memory content: {m.content} memory context: {m.context} memory keywords: {str(m.keywords)} memory tags: {str(m.tags)}\n"
+                    
+                    j += 1
+                    if j >= k:
+                        break
+                except (ValueError, TypeError, IndexError):
+                    continue
+                    
         return memory_str
 
 def run_tests():
