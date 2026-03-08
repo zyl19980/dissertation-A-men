@@ -255,6 +255,10 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
     all_categories = []
     total_questions = 0
     category_counts = defaultdict(int)
+
+    # Create intermediate results directory
+    intermediate_dir = os.path.join(os.path.dirname(__file__), "intermediate_results")
+    os.makedirs(intermediate_dir, exist_ok=True)
     
     # Evaluate each sample
     i = 0
@@ -369,22 +373,91 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
                     logger.info(f"Processed {total_questions} questions")
 
         # Memory cleanup after processing each sample
+        # Critical: explicitly delete all memory-heavy components
+        try:
+            # Delete retriever and its model
+            if hasattr(agent, 'memory_system') and hasattr(agent.memory_system, 'retriever'):
+                if hasattr(agent.memory_system.retriever, 'model'):
+                    del agent.memory_system.retriever.model
+                if hasattr(agent.memory_system.retriever, 'embeddings'):
+                    del agent.memory_system.retriever.embeddings
+                del agent.memory_system.retriever
+
+            # Delete memory system
+            if hasattr(agent, 'memory_system'):
+                if hasattr(agent.memory_system, 'memories'):
+                    agent.memory_system.memories.clear()
+                del agent.memory_system
+
+            # Delete LLM controller
+            if hasattr(agent, 'retriever_llm'):
+                del agent.retriever_llm
+        except Exception as e:
+            logger.warning(f"Error during memory cleanup: {e}")
+
+        # Delete the agent itself
         del agent
+
+        # Force garbage collection multiple times
+        gc.collect()
+        gc.collect()
         gc.collect()
 
-        # Log memory usage every 10 samples
-        if sample_idx % 10 == 0:
-            try:
-                import psutil
-                process = psutil.Process()
-                mem_gb = process.memory_info().rss / 1024 / 1024 / 1024
-                logger.info(f"Sample {sample_idx}: Memory usage = {mem_gb:.2f} GB")
-            except ImportError:
-                pass
+        # Try to clear torch cache if available
+        try:
+            import torch
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except ImportError:
+            pass
+
+        # Log memory usage after each sample
+        try:
+            import psutil
+            process = psutil.Process()
+            mem_gb = process.memory_info().rss / 1024 / 1024 / 1024
+            logger.info(f"AFTER Sample {sample_idx}: Memory usage = {mem_gb:.2f} GB")
+        except ImportError:
+            pass
+
+        # Periodically save and clear results to prevent memory accumulation
+        # Save every 2 samples or on the last sample
+        if (sample_idx + 1) % 2 == 0 or (sample_idx + 1) == len(samples):
+            if results:  # Only save if there are results
+                intermediate_file = os.path.join(intermediate_dir, f"results_sample_{sample_idx}.json")
+                with open(intermediate_file, 'w') as f:
+                    json.dump({
+                        "samples_range": f"0-{sample_idx}",
+                        "results": results,
+                        "metrics": all_metrics,
+                        "categories": all_categories
+                    }, f, indent=2)
+                logger.info(f"Saved intermediate results to {intermediate_file}")
+
+                # Clear results list to free memory (keep metrics for final aggregation)
+                results.clear()
+                gc.collect()
 
     # Calculate aggregate metrics
     aggregate_results = aggregate_metrics(all_metrics, all_categories)
-    
+
+    # Load all intermediate results for final report
+    all_individual_results = []
+    if os.path.exists(intermediate_dir):
+        for filename in sorted(os.listdir(intermediate_dir)):
+            if filename.startswith("results_sample_") and filename.endswith(".json"):
+                filepath = os.path.join(intermediate_dir, filename)
+                try:
+                    with open(filepath, 'r') as f:
+                        intermediate_data = json.load(f)
+                        all_individual_results.extend(intermediate_data.get("results", []))
+                except Exception as e:
+                    logger.warning(f"Failed to load intermediate file {filename}: {e}")
+
+    # If no intermediate files, use current results
+    if not all_individual_results:
+        all_individual_results = results
+
     # Prepare final results
     final_results = {
         "model": model,
@@ -394,7 +467,7 @@ def evaluate_dataset(dataset_path: str, model: str, output_path: Optional[str] =
             str(cat): count for cat, count in category_counts.items()
         },
         "aggregate_metrics": aggregate_results,
-        "individual_results": results
+        "individual_results": all_individual_results
     }
     logger.info(f"Error number: {error_num}")
     # Save results
